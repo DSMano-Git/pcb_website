@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { background: #111; color: white; display: flex; gap: 20px; padding: 50px; }
+  img { width: 400px; height: 300px; object-fit: cover; border-radius: 10px; }
+  .xray-1 { filter: invert(1) hue-rotate(180deg); }
+  .xray-2 { filter: invert(1) grayscale(1) sepia(1) hue-rotate(220deg) saturate(5) contrast(1.5); }
+  .xray-3 { filter: contrast(1.5) sepia(1) hue-rotate(250deg) saturate(4) invert(0.8); }
+</style>
+</head>
+<body>
+  <div>
+    <h3>Normal</h3>
+    <img src="/pcb-normal.png" />
+  </div>
+  <div>
+    <h3>Xray 1</h3>
+    <img src="/pcb-normal.png" class="xray-1" />
+  </div>
+  <div>
+    <h3>Xray 2</h3>
+    <img src="/pcb-normal.png" class="xray-2" />
+  </div>
+  <div>
+    <h3>Xray 3</h3>
+    <img src="/pcb-normal.png" class="xray-3" />
+  </div>
+</body>
+</html>
