@@ -20,8 +20,8 @@
   --border-color: rgba(0, 0, 0, 0.08);
   --glass-border: rgba(255, 255, 255, 0.8);
   
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --card-hover-bg: rgba(255, 255, 255, 1);
+  --card-bg: #ffffff;
+  --card-hover-bg: #ffffff;
 
   --navbar-bg: rgba(255, 255, 255, 0.6);
   --navbar-bg-scrolled: rgba(255, 255, 255, 0.9);
@@ -59,8 +59,8 @@
   --border-color: rgba(255, 255, 255, 0.08);
   --glass-border: rgba(255, 255, 255, 0.05);
 
-  --card-bg: rgba(17, 17, 17, 0.5);
-  --card-hover-bg: rgba(24, 24, 24, 0.8);
+  --card-bg: #1c1c1c;
+  --card-hover-bg: #242424;
 
   --navbar-bg: rgba(5, 5, 5, 0.5);
   --navbar-bg-scrolled: rgba(10, 10, 10, 0.85);
@@ -78,6 +78,15 @@
   box-sizing: border-box;
 }
 
+html, body, #root {
+  min-height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -89,8 +98,33 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
   overflow-x: hidden;
+}
+
+.main-content-wrapper {
+  padding-left: 0;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+/* GPU-hint for heavy sections — helps compositor skip layout recalcs */
+section {
+  contain: layout style;
+}
+
+/* Offscreen sections can skip rendering entirely until they scroll near viewport */
+section:not(:first-child) {
+  /* Removed content-visibility to prevent phantom scroll space at bottom */
 }
 
 /* Massive Typography Awwwards Style */
@@ -356,7 +390,6 @@ section {
 .App {
   position: relative;
   min-height: 100vh;
-  padding-bottom: 100px;
 }
 
 .pcb-reveal {

@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, memo } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 /* ── Scroll Reveal (Intersection Observer) ── */
-export const ScrollReveal = ({ children, delay = 0, y = 30, className = '', style = {} }) => {
+export const ScrollReveal = memo(({ children, delay = 0, y = 30, className = '', style = {} }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   return (
@@ -12,29 +12,29 @@ export const ScrollReveal = ({ children, delay = 0, y = 30, className = '', styl
       style={style}
       initial={{ opacity: 0, y: y }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: y }}
-      transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay }}
+      transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1], delay }}
     >
       {children}
     </motion.div>
   );
-};
+});
 
 /* ── Text Reveal ── */
-export const TextReveal = ({ children, delay = 0 }) => {
+export const TextReveal = memo(({ children, delay = 0 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   return (
     <div ref={ref} style={{ overflow: 'hidden', display: 'inline-block' }}>
       <motion.div initial={{ y: "100%" }} animate={isInView ? { y: 0 } : { y: "100%" }}
-        transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1], delay }}>
+        transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1], delay }}>
         {children}
       </motion.div>
     </div>
   );
-};
+});
 
 /* ── Animated SVG Icon ── */
-export const AnimatedSvgIcon = ({ d, size = 32, color = "var(--accent)", delay = 0, floatRange = 5 }) => {
+export const AnimatedSvgIcon = memo(({ d, size = 32, color = "var(--accent)", delay = 0, floatRange = 5 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -44,8 +44,8 @@ export const AnimatedSvgIcon = ({ d, size = 32, color = "var(--accent)", delay =
         viewBox="0 0 24 24" 
         width="100%" height="100%" 
         fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-        animate={floatRange > 0 ? { y: [-floatRange, floatRange, -floatRange] } : {}}
-        transition={floatRange > 0 ? { repeat: Infinity, duration: 4, ease: "easeInOut" } : {}}
+        /* Float animation disabled — was causing continuous framer-motion recalculation 
+           across dozens of icons simultaneously. Use CSS animation if float effect is needed. */
       >
         <motion.path
           d={d}
@@ -56,7 +56,7 @@ export const AnimatedSvgIcon = ({ d, size = 32, color = "var(--accent)", delay =
       </motion.svg>
     </div>
   );
-};
+});
 
 export const ICONS = {
   layers: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",

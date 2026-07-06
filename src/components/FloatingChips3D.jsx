@@ -1,12 +1,10 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, memo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 const ParticleTorus = ({ color = "#38ef7d" }) => {
   const pointsRef = useRef();
-
-  // Create points on a torus knot
-  const particleCount = 12000;
+  const particleCount = 5000; // Reduced from 12000
   
   const positions = useMemo(() => {
     const pos = new Float32Array(particleCount * 3);
@@ -16,16 +14,12 @@ const ParticleTorus = ({ color = "#38ef7d" }) => {
     const tube = 1.2;
 
     for (let i = 0; i < particleCount; i++) {
-      // Random position along the knot
       const u = Math.random() * Math.PI * 2;
-      
-      // Torus knot math
       const r = radius + tube * Math.cos(q * u);
       const x = r * Math.cos(p * u);
       const y = r * Math.sin(p * u);
       const z = tube * Math.sin(q * u);
 
-      // Add some random scatter to make it look like a cloud rather than a solid line
       const scatter = 1.5;
       pos[i * 3] = x + (Math.random() - 0.5) * scatter;
       pos[i * 3 + 1] = y + (Math.random() - 0.5) * scatter;
@@ -63,11 +57,14 @@ const ParticleTorus = ({ color = "#38ef7d" }) => {
   );
 };
 
-const FloatingChips3D = ({ color }) => {
+const FloatingChips3D = memo(({ color }) => {
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-      <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
-        {/* <fog attach="fog" args={['#000000', 4, 18]} /> */}
+      <Canvas
+        camera={{ position: [0, 0, 10], fov: 45 }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, powerPreference: 'high-performance' }}
+      >
         <ParticleTorus color={color} />
       </Canvas>
       <div style={{
@@ -84,6 +81,6 @@ const FloatingChips3D = ({ color }) => {
       }} />
     </div>
   );
-};
+});
 
 export default FloatingChips3D;

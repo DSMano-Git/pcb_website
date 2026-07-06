@@ -6,41 +6,54 @@ import HeroBackground3D from '../components/HeroBackground3D';
 import { ScrollReveal, TextReveal, AnimatedSvgIcon, ICONS } from '../components/UI';
 
 /* ══════════════════════════════════════════════════════════
-   CLIP-PATH X-RAY REVEAL 
+   CLIP-PATH X-RAY REVEAL — DOM-based (zero React re-renders on move)
    ══════════════════════════════════════════════════════════ */
 const PowerXRayReveal = ({ src, xraySrc, height, overlay }) => {
-  const containerRef = useRef(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [hovering, setHovering] = useState(false);
+  const maskRef = useRef(null);
 
-  const onMove = useCallback((e) => {
-    if (!containerRef.current) return;
-    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - left) / width;
-    const y = (e.clientY - top) / height;
-    setMousePos({ x, y });
-  }, []);
+  const onMove = (e) => {
+    if (!maskRef.current) return;
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    // Direct DOM manipulation — bypasses React completely for 60fps
+    maskRef.current.style.transition = 'none';
+    maskRef.current.style.clipPath = `circle(35% at ${x}% ${y}%)`;
+    maskRef.current.style.webkitClipPath = `circle(35% at ${x}% ${y}%)`;
+  };
 
-  const clip = hovering 
-    ? `circle(35% at ${mousePos.x * 100}% ${mousePos.y * 100}%)`
-    : `circle(0% at 50% 50%)`;
+  const onEnter = () => {
+    if (!maskRef.current) return;
+    maskRef.current.style.transition = 'clip-path 0.2s ease-out, -webkit-clip-path 0.2s ease-out';
+  };
+
+  const onLeave = () => {
+    if (!maskRef.current) return;
+    maskRef.current.style.transition = 'clip-path 0.4s ease-in-out, -webkit-clip-path 0.4s ease-in-out';
+    maskRef.current.style.clipPath = `circle(0% at 50% 50%)`;
+    maskRef.current.style.webkitClipPath = `circle(0% at 50% 50%)`;
+  };
 
   return (
     <div 
-      ref={containerRef} 
       className="pcb-reveal"
       style={{ position: 'relative', width: '100%', overflow: 'hidden', cursor: 'crosshair', borderRadius: '24px', ...(height ? { height } : {}) }} 
       onMouseMove={onMove} 
-      onMouseEnter={() => setHovering(true)} 
-      onMouseLeave={() => setHovering(false)}
+      onMouseEnter={onEnter} 
+      onMouseLeave={onLeave}
     >
       <img src={src} alt="PCB board" style={{ width: '100%', display: 'block', userSelect: 'none', ...(height ? { height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 } : {}) }} />
       {overlay && overlay}
 
-      <div style={{
-        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-        clipPath: clip, transition: hovering ? 'none' : 'clip-path 0.4s ease-out', pointerEvents: 'none', zIndex: 2,
-      }}>
+      <div
+        ref={maskRef}
+        style={{
+          position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+          clipPath: 'circle(0% at 50% 50%)',
+          WebkitClipPath: 'circle(0% at 50% 50%)',
+          pointerEvents: 'none', zIndex: 2,
+        }}
+      >
         <img src={xraySrc} alt="PCB X-Ray" style={{ width: '100%', display: 'block', userSelect: 'none', filter: 'brightness(1.0) contrast(1.1)', opacity: 0.85, mixBlendMode: 'screen', ...(height ? { height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 } : {}) }} />
       </div>
     </div>

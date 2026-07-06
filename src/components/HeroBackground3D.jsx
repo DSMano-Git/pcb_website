@@ -1,28 +1,25 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, memo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
 
-// A dynamic particle starfield background that slowly rotates
-const ParticleSphere = (props) => {
+const ParticleSphere = () => {
   const ref = useRef();
   
-  // Generate random points in a sphere
   const sphere = useMemo(() => {
-    const points = new Float32Array(5000 * 3);
+    const points = new Float32Array(3000 * 3); // Reduced from 5000
     random.inSphere(points, { radius: 1.5 });
     return points;
   }, []);
 
   useFrame((state, delta) => {
-    // Slow, majestic rotation
     ref.current.rotation.x -= delta / 10;
     ref.current.rotation.y -= delta / 15;
   });
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
           color="#a1a1aa"
@@ -36,10 +33,14 @@ const ParticleSphere = (props) => {
   );
 };
 
-const HeroBackground3D = () => {
+const HeroBackground3D = memo(() => {
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-      <Canvas camera={{ position: [0, 0, 1] }}>
+      <Canvas
+        camera={{ position: [0, 0, 1] }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, powerPreference: 'high-performance' }}
+      >
         <ParticleSphere />
       </Canvas>
       {/* Overlay gradient so text remains readable */}
@@ -57,6 +58,6 @@ const HeroBackground3D = () => {
       }} />
     </div>
   );
-};
+});
 
 export default HeroBackground3D;

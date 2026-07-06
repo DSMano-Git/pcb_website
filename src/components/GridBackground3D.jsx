@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, memo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
@@ -6,15 +6,13 @@ import * as random from 'maath/random/dist/maath-random.esm';
 const ParticleCloud = (props) => {
   const ref = useRef();
   
-  // Generate random points in a box for a more structured "data" feel
   const particles = useMemo(() => {
-    const points = new Float32Array(8000 * 3);
+    const points = new Float32Array(4000 * 3); // Reduced from 8000
     random.inBox(points, { sides: [3, 3, 3] });
     return points;
   }, []);
 
   useFrame((state, delta) => {
-    // Slow, majestic rotation
     ref.current.rotation.x -= delta / 12;
     ref.current.rotation.y -= delta / 20;
   });
@@ -35,10 +33,14 @@ const ParticleCloud = (props) => {
   );
 };
 
-const GridBackground3D = () => {
+const GridBackground3D = memo(() => {
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-      <Canvas camera={{ position: [0, 0, 1.5] }}>
+      <Canvas
+        camera={{ position: [0, 0, 1.5] }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, powerPreference: 'high-performance' }}
+      >
         <ParticleCloud />
       </Canvas>
       {/* Overlay gradient so text remains readable */}
@@ -56,6 +58,6 @@ const GridBackground3D = () => {
       }} />
     </div>
   );
-};
+});
 
 export default GridBackground3D;

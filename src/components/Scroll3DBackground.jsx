@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useEffect } from 'react';
+import React, { useRef, useMemo, useEffect, memo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useScroll } from 'framer-motion';
@@ -6,9 +6,9 @@ import { useScroll } from 'framer-motion';
 const ScrollReactiveParticles = ({ color = "var(--accent)" }) => {
   const pointsRef = useRef();
   const { scrollYProgress } = useScroll();
-  
-  // Track scroll value internally in the useFrame loop
   const scrollRef = useRef(0);
+  // Pre-allocate Vector3 to avoid GC pressure from creating new ones every frame
+  const targetScale = useMemo(() => new THREE.Vector3(), []);
   
   useEffect(() => {
     return scrollYProgress.on("change", (latest) => {
@@ -16,8 +16,7 @@ const ScrollReactiveParticles = ({ color = "var(--accent)" }) => {
     });
   }, [scrollYProgress]);
 
-  // Create points on a torus knot
-  const particleCount = 15000;
+  const particleCount = 6000; // Reduced from 15000
   
   const positions = useMemo(() => {
     const pos = new Float32Array(particleCount * 3);
@@ -43,23 +42,19 @@ const ScrollReactiveParticles = ({ color = "var(--accent)" }) => {
 
   useFrame((state, delta) => {
     if (pointsRef.current) {
-      // Base rotation
       pointsRef.current.rotation.x += delta * 0.05;
       pointsRef.current.rotation.y += delta * 0.08;
       
-      // Reactive rotation based on scroll (fly-through effect)
-      // As you scroll down (scrollRef goes 0 -> 1), we move the camera/particles
       const scrollVal = scrollRef.current;
       
-      // Target rotation based on scroll
       const targetRotationZ = scrollVal * Math.PI * 2;
       pointsRef.current.rotation.z += (targetRotationZ - pointsRef.current.rotation.z) * 0.05;
       
-      // Target scale (zoom in as you scroll)
-      const targetScale = 1 + (scrollVal * 1.5);
-      pointsRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.05);
+      // Reuse pre-allocated Vector3 instead of creating new one every frame
+      const s = 1 + (scrollVal * 1.5);
+      targetScale.set(s, s, s);
+      pointsRef.current.scale.lerp(targetScale, 0.05);
       
-      // Target position
       pointsRef.current.position.y = scrollVal * -5;
     }
   });
@@ -86,10 +81,14 @@ const ScrollReactiveParticles = ({ color = "var(--accent)" }) => {
   );
 };
 
-const Scroll3DBackground = () => {
+const Scroll3DBackground = memo(() => {
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' }}>
-      <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
+      <Canvas
+        camera={{ position: [0, 0, 15], fov: 60 }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: false, powerPreference: 'high-performance' }}
+      >
         <fog attach="fog" args={['#050505', 10, 30]} />
         <ambientLight intensity={0.5} />
         <ScrollReactiveParticles color="#10b981" />
@@ -104,6 +103,6 @@ const Scroll3DBackground = () => {
       }} />
     </div>
   );
-};
+});
 
 export default Scroll3DBackground;
