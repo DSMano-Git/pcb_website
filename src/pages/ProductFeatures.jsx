@@ -551,11 +551,11 @@ const ProductFeatures = () => {
                 { title: "Benefits", content: <ul style={{ paddingLeft: '1.2rem', margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}><li>Run simulations much faster than traditional tools</li><li>Make better decisions with AI guidance</li><li>Catch signal problems early and fix them easily</li><li>Save time and reduce design respins</li><li>Suitable for both beginners and experienced engineers</li></ul> }
               ]} />
 
-              <div style={{ marginTop: '1rem' }}>
+              {/* <div style={{ marginTop: '1rem' }}>
                 <Link to="#" style={{ color: 'var(--bg-primary)', background: 'var(--accent)', fontWeight: '700', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '999px', transition: 'all 0.2s' }}>
                   Speed Up Your SI Analysis <ArrowRight size={18} />
                 </Link>
-              </div>
+              </div> */}
             </div>
 
           </div>
@@ -592,11 +592,11 @@ const ProductFeatures = () => {
                 { title: "Benefits", content: <ul style={{ paddingLeft: '1.2rem', margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}><li>Run thermal analysis much faster than traditional methods</li><li>Catch heat-related problems early and fix them easily</li><li>Improve board reliability and product lifespan</li><li>Test multiple cooling scenarios quickly</li><li>Make confident thermal decisions even on complex designs</li></ul> }
               ]} />
 
-              <div style={{ marginTop: '1rem' }}>
+              {/* <div style={{ marginTop: '1rem' }}>
                 <Link to="#" style={{ color: 'var(--bg-primary)', background: 'var(--accent)', fontWeight: '700', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '999px', transition: 'all 0.2s' }}>
                   Master Your Board’s Heat <ArrowRight size={18} />
                 </Link>
-              </div>
+              </div> */}
             </div>
 
             <ScrollReveal delay={0.1}>
@@ -667,12 +667,9 @@ const ProductFeatures = () => {
             </h2>
 
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-              <Link to="#" style={{ color: 'var(--bg-primary)', background: 'var(--text-primary)', fontWeight: '700', fontSize: '1.1rem', padding: '1rem 3rem', borderRadius: '999px', transition: 'all 0.2s', textDecoration: 'none' }}>
-                Start Creating Now
-              </Link>
-              <Link to="#" className="hover-glow-card" style={{ color: 'var(--text-primary)', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-color)', fontWeight: '700', fontSize: '1.1rem', padding: '1rem 3rem', borderRadius: '999px', transition: 'all 0.2s', textDecoration: 'none' }}>
-                Share Your Idea
-              </Link>
+              <a href="mailto:contact@boltzpcb.com" style={{ color: 'var(--bg-primary)', background: 'var(--text-primary)', fontWeight: '700', fontSize: '1.1rem', padding: '1rem 3rem', borderRadius: '999px', transition: 'all 0.2s', textDecoration: 'none' }}>
+                Contact Us
+              </a>
             </div>
           </ScrollReveal>
         </div>

@@ -114,12 +114,12 @@ const Navbar = () => {
         {/* LEFT: Logo */}
         <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
-            <motion.div whileHover={{ rotate: 90 }} transition={{ duration: 0.4, ease: "easeOut" }}>
+            {/* <motion.div whileHover={{ rotate: 90 }} transition={{ duration: 0.4, ease: "easeOut" }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px var(--accent-glow)' }}>
                 <Cpu color="#000" size={16} />
               </div>
-            </motion.div>
-            <span style={{ fontWeight: '900', color: 'var(--text-primary)', letterSpacing: '-0.02em', fontSize: '1.1rem', textTransform: 'uppercase' }}>Boltz</span>
+            </motion.div> */}
+            <span style={{ fontWeight: '900', color: 'var(--text-primary)', letterSpacing: '-0.02em', fontSize: '1.1rem', textTransform: 'uppercase' }}>BoltzPCB</span>
           </Link>
         </div>
         
@@ -173,7 +173,7 @@ const Navbar = () => {
             </div>
           </motion.button>
 
-          <Link to="/features" style={{ textDecoration: 'none' }}>
+          <a href="https://boltzpcb.com/auth" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
             <motion.div 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -189,9 +189,9 @@ const Navbar = () => {
                 transition: 'all 0.3s',
               }}
             >
-              Get Started
+            Login
             </motion.div>
-          </Link>
+          </a>
         </div>
       </motion.nav>
     </div>

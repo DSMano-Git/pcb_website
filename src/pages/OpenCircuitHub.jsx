@@ -39,12 +39,12 @@ const OpenCircuitHub = () => {
           
           <ScrollReveal delay={0.4}>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-              <Link to="#" className="btn-glow" style={{ padding: '1.1rem 2.5rem', fontSize: '1.15rem', background: 'var(--text-primary)', color: 'var(--bg-primary)', borderRadius: '999px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.19, 1, 0.22, 1)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
+              {/* <Link to="#" className="btn-glow" style={{ padding: '1.1rem 2.5rem', fontSize: '1.15rem', background: 'var(--text-primary)', color: 'var(--bg-primary)', borderRadius: '999px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.19, 1, 0.22, 1)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
                 <Search size={20} /> Browse Projects
               </Link>
               <Link to="#" className="hover-glow-card" style={{ padding: '1.1rem 2.5rem', fontSize: '1.15rem', background: 'var(--nav-pill-bg)', border: '1px solid var(--border-color)', borderRadius: '999px', color: 'var(--text-primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.19, 1, 0.22, 1)', backdropFilter: 'blur(10px)' }}>
                 <Share2 size={20} /> Share Your PCB
-              </Link>
+              </Link> */}
             </div>
           </ScrollReveal>
         </div>
@@ -191,9 +191,9 @@ const OpenCircuitHub = () => {
       </section>
 
       {/* CTA Section */}
-      <section style={{ padding: '8rem 0 6rem', position: 'relative', zIndex: 10, textAlign: 'center' }}>
+      {/* <section style={{ padding: '8rem 0 6rem', position: 'relative', zIndex: 10, textAlign: 'center' }}> */}
         {/* Glow behind CTA */}
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '50vw', height: '50vw', background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 60%)', opacity: 1, filter: 'blur(100px)', zIndex: 0, pointerEvents: 'none' }} />
+        {/* <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '50vw', height: '50vw', background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 60%)', opacity: 1, filter: 'blur(100px)', zIndex: 0, pointerEvents: 'none' }} />
         
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal>
@@ -201,14 +201,14 @@ const OpenCircuitHub = () => {
               <h2 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 900, marginBottom: '2rem', letterSpacing: '-0.02em', lineHeight: 1.1 }}>Got a board nobody's seen yet?</h2>
               <p style={{ fontSize: '1.25rem', color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: '3.5rem', maxWidth: '700px', margin: '0 auto 3.5rem' }}>
                 Someone out there needs exactly what you built. It doesn't have to be perfect or production-ready—a prototype, a work-in-progress, or a design you're still debugging is just as welcome as a finished one. Post it, and let the community help you take it further.
-              </p>
-              <Link to="#" className="btn-glow hover-glow-card" style={{ padding: '1.35rem 4rem', fontSize: '1.25rem', background: 'var(--accent)', color: '#fff', borderRadius: '999px', fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.19, 1, 0.22, 1)', boxShadow: '0 10px 40px var(--accent-glow)' }}>
+              </p> */}
+              {/* <Link to="#" className="btn-glow hover-glow-card" style={{ padding: '1.35rem 4rem', fontSize: '1.25rem', background: 'var(--accent)', color: '#fff', borderRadius: '999px', fontWeight: 800, display: 'inline-flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.19, 1, 0.22, 1)', boxShadow: '0 10px 40px var(--accent-glow)' }}>
                 Post Your First Project <ArrowRight size={24} />
-              </Link>
-            </div>
+              </Link> */}
+            {/* </div>
           </ScrollReveal>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );

@@ -24,6 +24,16 @@ const AnimatedLayersIcon = forwardRef(
             };
         });
 
+        useEffect(() => {
+            if (!isControlledRef.current) {
+                if (isActive) {
+                    controls.start('animate');
+                } else {
+                    controls.start('normal');
+                }
+            }
+        }, [isActive, controls]);
+
         const handleMouseEnter = useCallback(
             (e) => {
                 if (isControlledRef.current) { onMouseEnter?.(e); }
@@ -41,9 +51,9 @@ const AnimatedLayersIcon = forwardRef(
         return (
             <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ display: 'inline-flex', ...style }} {...props}>
                 <svg fill="none" height={size} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={isActive ? "2.5" : "2"} viewBox="0 0 24 24" width={size} xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <motion.path animate={controls} d="M2 12l10 5 10-5" transition={{...DEFAULT_TRANSITION, delay: 0.1}} variants={PATH_VARIANTS} />
-                    <motion.path animate={controls} d="M2 17l10 5 10-5" transition={{...DEFAULT_TRANSITION, delay: 0.2}} variants={PATH_VARIANTS} />
+                    <motion.path initial="normal" animate={controls} d="M12 2L2 7l10 5 10-5-10-5z" transition={DEFAULT_TRANSITION} variants={PATH_VARIANTS} />
+                    <motion.path initial="normal" animate={controls} d="M2 12l10 5 10-5" transition={{...DEFAULT_TRANSITION, delay: 0.1}} variants={PATH_VARIANTS} />
+                    <motion.path initial="normal" animate={controls} d="M2 17l10 5 10-5" transition={{...DEFAULT_TRANSITION, delay: 0.2}} variants={PATH_VARIANTS} />
                 </svg>
             </div>
         );

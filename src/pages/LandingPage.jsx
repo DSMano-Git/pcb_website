@@ -76,51 +76,56 @@ const LandingPage = () => {
         <HeroBackground3D />
         
         <motion.div className="container" style={{ position: 'relative', zIndex: 10, y: heroY, opacity: heroOpacity }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255, 255, 255, 0.05)', border: '1px solid var(--border-color)', padding: '0.4rem 1rem', borderRadius: '999px', marginBottom: '2rem', backdropFilter: 'blur(10px)' }}>
-                <AnimatedSvgIcon d={ICONS.hexagon} size={14} floatRange={0} />
-                <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>BoltzPCB Platform 2.0</span>
-              </div>
-            </motion.div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'center' }}>
+            
+            {/* Left Content */}
+            <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+              </motion.div>
 
-            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 5.5rem)', marginBottom: '1.5rem', lineHeight: 1.05, textShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
-              <TextReveal>Design hardware,</TextReveal>
-              <TextReveal delay={0.15}>powered by <span className="text-gradient">AI</span></TextReveal>
-            </h1>
+              <h1 style={{ fontSize: 'clamp(3rem, 5vw, 5.5rem)', marginBottom: '1.5rem', lineHeight: 1.05, textShadow: '0 0 40px var(--accent-glow)', textAlign: 'left' }}>
+                <TextReveal>Design hardware,</TextReveal><br />
+                <TextReveal delay={0.15}>powered by <span className="text-gradient">AI</span></TextReveal>
+              </h1>
+              
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+                style={{ fontSize: '1.25rem', color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '600px', textAlign: 'left' }}>
+                From specs to fabrication in hours. Simulation, thermal validation, and DRC — fully automated and highly intuitive.
+              </motion.p>
+              
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} style={{ marginTop: '3rem', display: 'flex', gap: '1rem', justifyContent: 'flex-start' }}>
+              </motion.div>
+            </div>
+
+            {/* Right Image */}
+            <div style={{ flex: '1 1 450px', display: 'flex', justifyContent: 'center', width: '100%' }}>
+               <ScrollReveal delay={0.2} y={50}>
+                  <motion.div 
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                    style={{ 
+                      width: 'min(90vw, 550px)',
+                      aspectRatio: '1 / 1', 
+                      position: 'relative',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      border: '1px solid rgba(128, 128, 128, 0.15)',
+                      boxShadow: '0 16px 48px -12px rgba(0,0,0,0.1)',
+                      background: 'var(--bg-primary)',
+                      margin: '0 auto'
+                    }}
+                  >
+                    <PowerXRayReveal 
+                      src="/boltzpcb_realistic_hero.png" 
+                      xraySrc="/boltzpcb_realistic_xray.png" 
+                      height="100%" 
+                      overlay={null}
+                    />
+                  </motion.div>
+               </ScrollReveal>
+            </div>
             
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
-              style={{ fontSize: '1.25rem', color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '600px', margin: '0 auto' }}>
-              From specs to fabrication in hours. Simulation, thermal validation, and DRC — fully automated and highly intuitive.
-            </motion.p>
-            
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} style={{ marginTop: '3rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-              {/* <button className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>Start Building</button>
-              <button className="btn glass-card" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem', border: '1px solid var(--border-color)', borderRadius: '999px' }}>View Documentation</button> */}
-            </motion.div>
           </div>
         </motion.div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          INTERACTIVE HERO IMAGE
-          ═══════════════════════════════════════════ */}
-      <section style={{ padding: '0 0 5rem 0', position: 'relative', zIndex: 10, marginTop: '-4rem' }}>
-        <div className="container">
-           <ScrollReveal delay={0.2} y={50}>
-              <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative' }}>
-                <PowerXRayReveal src="/pcb-hero-boltz.png" xraySrc="/pcb-hero-boltz-xray.png" height="500px" />
-                <div style={{ 
-                  position: 'absolute', bottom: '-1.5rem', left: '50%', transform: 'translateX(-50%)',
-                  background: 'var(--card-bg)', backdropFilter: 'blur(20px)', padding: '0.75rem 2rem', borderRadius: '999px',
-                  border: '1px solid var(--border-color)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', display: 'flex', gap: '0.5rem', alignItems: 'center', zIndex: 20
-                }}>
-                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent)', boxShadow: '0 0 10px var(--accent)' }}></div>
-                  <span className="mono" style={{ fontSize: '0.75rem', letterSpacing: '0.1em' }}>Hover to inspect internal layers</span>
-                </div>
-              </div>
-           </ScrollReveal>
-        </div>
       </section>
 
       {/* ═══════════════════════════════════════════
@@ -244,9 +249,9 @@ const LandingPage = () => {
                     <h3 style={{ fontSize: '1.35rem', margin: 0 }}>AI Smart SI Simulator</h3>
                   </div>
                   <p style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>GPU-accelerated signal integrity with AI-powered parameter suggestions and live eye diagrams.</p>
-                  <Link to="/features" style={{ color: 'var(--accent)', fontWeight: '600', fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: 'rgba(0, 240, 255, 0.1)', borderRadius: '999px', transition: 'all 0.2s' }} className="hover-glow">
+                  {/* <Link to="/features" style={{ color: 'var(--accent)', fontWeight: '600', fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: 'rgba(0, 240, 255, 0.1)', borderRadius: '999px', transition: 'all 0.2s' }} className="hover-glow">
                     Speed Up Analysis <AnimatedSvgIcon d={ICONS.chevron} size={14} floatRange={0} />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </ScrollReveal>
@@ -259,9 +264,9 @@ const LandingPage = () => {
                     <h3 style={{ fontSize: '1.35rem', margin: 0 }}>Smart Thermal Simulator</h3>
                   </div>
                   <p style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Real-time thermal maps, automatic hotspot detection, and AI-driven heatsink recommendations.</p>
-                  <Link to="/features" style={{ color: 'var(--accent)', fontWeight: '600', fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: 'rgba(0, 240, 255, 0.1)', borderRadius: '999px', transition: 'all 0.2s' }} className="hover-glow">
+                  {/* <Link to="/features" style={{ color: 'var(--accent)', fontWeight: '600', fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: 'rgba(0, 240, 255, 0.1)', borderRadius: '999px', transition: 'all 0.2s' }} className="hover-glow">
                     Master Board Heat <AnimatedSvgIcon d={ICONS.chevron} size={14} floatRange={0} />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </ScrollReveal>
@@ -312,8 +317,7 @@ const LandingPage = () => {
             <h2 style={{ marginBottom: '0.75rem', fontSize: '1.75rem' }}>Ready to bring your idea to life?</h2>
             <p style={{ maxWidth: '450px', margin: '0 auto 1.5rem', fontSize: '0.95rem' }}>Cut design time by 40–60%. Expert-level results without years of experience.</p>
             <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
-              {/* <Link to="/features" className="btn btn-primary" style={{ fontSize: '0.85rem' }}>Start Creating Now</Link>
-              <Link to="/hub" className="btn btn-secondary" style={{ fontSize: '0.85rem' }}>Browse Community</Link> */}
+              <a href="mailto:contact@boltzpcb.com" className="btn btn-primary" style={{ fontSize: '0.85rem' }}>Contact Us</a>
             </div>
           </ScrollReveal>
         </div>

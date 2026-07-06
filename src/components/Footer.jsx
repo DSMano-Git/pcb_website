@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cpu, MessageCircle, Mail, ArrowRight, ChevronUp, Check } from 'lucide-react';
+import { MessageCircle, ArrowRight, ChevronUp, Check, Cpu, Globe } from 'lucide-react';
 
 const Github = ({ size = 24, ...props }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -31,6 +31,7 @@ const Footer = memo(() => {
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (email.trim()) {
+      window.location.href = `mailto:contact@boltzpcb.com?subject=Newsletter Subscription&body=Please add ${email} to the mailing list.`;
       setSubscribed(true);
       setEmail('');
       setTimeout(() => setSubscribed(false), 5000);
@@ -47,384 +48,273 @@ const Footer = memo(() => {
       background: 'var(--bg-secondary)',
       color: 'var(--text-primary)',
       borderTop: '1px solid var(--border-color)',
-      position: 'relative',
       overflow: 'hidden',
       zIndex: 10,
-      transition: 'background-color 0.4s ease, border-color 0.4s ease'
     }}>
       <style>{`
-        .footer-container {
-          max-width: 1440px;
+        .footer-wrapper {
+          max-width: 1400px;
           margin: 0 auto;
-          padding: 6rem 2.5rem 3rem;
+          padding: 6rem 2rem 2rem;
           position: relative;
           z-index: 2;
         }
-        .footer-grid {
-          display: grid;
-          grid-template-columns: 2fr 1fr 1.5fr;
-          gap: 4rem;
-          margin-bottom: 5rem;
-        }
-        .footer-col {
+        .footer-top-content {
           display: flex;
-          flex-direction: column;
-          gap: 1.25rem;
+          justify-content: space-between;
+          align-items: flex-start;
+          flex-wrap: wrap;
+          gap: 4rem;
+          margin-bottom: 6rem;
+        }
+        .footer-brand-section {
+          flex: 1;
+          min-width: 300px;
+          max-width: 450px;
+        }
+        .footer-brand-name {
+          font-family: var(--font-display);
+          font-size: clamp(2rem, 4vw, 3rem);
+          font-weight: 900;
+          letter-spacing: -0.04em;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          background: var(--gradient-primary);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
         }
         .footer-desc {
-          color: var(--text-secondary);
-          font-size: 0.95rem;
+          font-size: 1.1rem;
+          color: var(--text-muted);
           line-height: 1.6;
-          max-width: 320px;
-          margin: 0;
+          margin-bottom: 2rem;
         }
-        .footer-col-title {
-          font-size: 0.85rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          color: var(--text-primary);
-          margin-bottom: 0.5rem;
-        }
-        .footer-links-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
+        .footer-socials {
           display: flex;
-          flex-direction: column;
-          gap: 0.85rem;
+          gap: 1rem;
         }
-        .footer-link {
-          color: var(--text-secondary);
-          font-size: 0.95rem;
-          text-decoration: none;
-          transition: color 0.2s ease;
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          position: relative;
-          width: fit-content;
-          font-weight: 500;
-        }
-        .footer-link::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 1.5px;
-          bottom: -2px;
-          left: 0;
-          background-color: var(--accent);
-          transition: width 0.3s ease;
-        }
-        .footer-link:hover {
-          color: var(--text-primary);
-        }
-        .footer-link:hover::after {
-          width: 100%;
-        }
-        .social-row {
-          display: flex;
-          gap: 0.75rem;
-          margin-top: 0.5rem;
-        }
-        .social-btn {
-          width: 42px;
-          height: 42px;
-          border-radius: 12px;
-          background: var(--bg-tertiary);
+        .social-circle {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: rgba(128, 128, 128, 0.05);
           border: 1px solid var(--border-color);
           display: flex;
           align-items: center;
           justify-content: center;
           color: var(--text-secondary);
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
           cursor: pointer;
         }
-        .social-btn:hover {
-          color: var(--bg-primary);
+        .social-circle:hover {
           background: var(--accent);
+          color: #fff;
           border-color: var(--accent);
-          transform: translateY(-3px);
-          box-shadow: 0 8px 20px var(--accent-glow);
+          transform: translateY(-4px) scale(1.05);
+          box-shadow: 0 10px 20px var(--accent-glow);
         }
-        .newsletter-desc {
-          color: var(--text-secondary);
+        .footer-links-container {
+          display: flex;
+          gap: 4rem;
+          flex-wrap: wrap;
+        }
+        .footer-link-group {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+          min-width: 150px;
+        }
+        .footer-link-title {
           font-size: 0.9rem;
-          margin: 0;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          color: var(--text-primary);
+          margin-bottom: 0.5rem;
+        }
+        .footer-link {
+          color: var(--text-secondary);
+          font-size: 1rem;
+          text-decoration: none;
+          transition: color 0.2s ease, transform 0.2s ease;
+          display: inline-flex;
+          align-items: center;
+          font-weight: 500;
+        }
+        .footer-link:hover {
+          color: var(--accent);
+          transform: translateX(4px);
+        }
+        .footer-newsletter {
+          background: rgba(128, 128, 128, 0.03);
+          border: 1px solid var(--border-color);
+          border-radius: 24px;
+          padding: 2.5rem;
+          flex: 1;
+          min-width: 300px;
+          max-width: 450px;
+          position: relative;
+          overflow: hidden;
+        }
+        .footer-newsletter::before {
+          content: '';
+          position: absolute;
+          top: 0; right: 0; width: 150px; height: 150px;
+          background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+          transform: translate(30%, -30%);
+          pointer-events: none;
         }
         .newsletter-form {
           display: flex;
-          gap: 0.5rem;
-          width: 100%;
-          position: relative;
+          gap: 0.75rem;
+          margin-top: 1.5rem;
         }
         .newsletter-input {
           flex: 1;
-          padding: 0.8rem 1rem;
-          border-radius: 12px;
+          padding: 1rem 1.25rem;
+          border-radius: 16px;
           background: var(--bg-primary);
           border: 1px solid var(--border-color);
           color: var(--text-primary);
-          font-family: var(--font-primary);
-          font-size: 0.9rem;
+          font-size: 0.95rem;
           outline: none;
           transition: all 0.3s ease;
         }
         .newsletter-input:focus {
           border-color: var(--accent);
-          box-shadow: 0 0 0 3px var(--accent-glow);
+          box-shadow: 0 0 0 4px var(--accent-glow);
         }
         .newsletter-btn {
-          width: 46px;
-          height: 46px;
-          border-radius: 12px;
+          width: 52px;
+          height: 52px;
+          border-radius: 16px;
           background: var(--accent);
-          color: var(--bg-primary);
+          color: #fff;
           border: none;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: all 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
           flex-shrink: 0;
-          box-shadow: 0 4px 12px var(--accent-glow);
         }
         .newsletter-btn:hover {
           background: var(--accent-light);
-          transform: scale(1.03);
+          transform: scale(1.05);
+          box-shadow: 0 10px 20px var(--accent-glow);
         }
-        .newsletter-success {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          color: var(--accent);
-          font-size: 0.9rem;
-          font-weight: 600;
-          margin-top: 0.5rem;
-        }
-        .footer-bottom {
-          border-top: 1px solid var(--border-color);
+        .footer-bottom-bar {
           padding-top: 2rem;
+          border-top: 1px solid var(--border-color);
           display: flex;
           justify-content: space-between;
           align-items: center;
           flex-wrap: wrap;
           gap: 1.5rem;
         }
-        .status-indicator {
+        .back-to-top {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          background: var(--bg-tertiary);
-          border: 1px solid var(--border-color);
-          padding: 0.4rem 1rem;
-          border-radius: 999px;
-          font-size: 0.8rem;
-          font-family: var(--font-mono);
+          font-weight: 600;
+          font-size: 0.9rem;
           color: var(--text-secondary);
+          cursor: pointer;
+          transition: color 0.2s;
+          background: none;
+          border: none;
         }
-        .status-dot {
-          width: 8px;
-          height: 8px;
-          background: #10b981;
-          border-radius: 50%;
-          animation: statusPulse 2s infinite;
+        .back-to-top:hover {
+          color: var(--accent);
         }
-        .back-to-top-btn {
-          width: 44px;
-          height: 44px;
+        .back-to-top-icon {
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           background: var(--bg-tertiary);
           border: 1px solid var(--border-color);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--text-primary);
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-        .back-to-top-btn:hover {
-          background: var(--accent);
-          color: var(--bg-primary);
-          border-color: var(--accent);
-          transform: translateY(-3px);
-          box-shadow: 0 8px 20px var(--accent-glow);
-        }
-        @keyframes statusPulse {
-          0% {
-            transform: scale(0.95);
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-          }
-          70% {
-            transform: scale(1);
-            box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
-          }
-          100% {
-            transform: scale(0.95);
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-          }
         }
         @media (max-width: 1024px) {
-          .footer-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-          }
-        }
-        @media (max-width: 640px) {
-          .footer-grid {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-            margin-bottom: 3.5rem;
-          }
-          .footer-bottom {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-          }
-          .newsletter-form {
-            max-width: 100%;
-          }
+          .footer-top-content { flex-direction: column; }
+          .footer-brand-section, .footer-newsletter { max-width: 100%; }
         }
       `}</style>
 
-      {/* Premium subtle grid pattern */}
-      <div style={{ 
-        position: 'absolute', 
-        inset: 0, 
-        backgroundImage: 'linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)', 
-        backgroundSize: '40px 40px', 
-        zIndex: 0, 
-        pointerEvents: 'none', 
-        opacity: 0.6 
-      }} />
+      {/* Background Decor */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '500px', background: 'radial-gradient(circle at bottom center, var(--accent-glow) 0%, transparent 70%)', pointerEvents: 'none', opacity: 0.5 }} />
 
-      {/* Soft top glow matching custom accent */}
-      <div style={{ 
-        position: 'absolute', 
-        top: 0, 
-        left: '50%', 
-        transform: 'translateX(-50%)', 
-        width: '70%', 
-        height: '140px', 
-        background: 'radial-gradient(ellipse at top, var(--accent-glow) 0%, transparent 70%)', 
-        pointerEvents: 'none',
-        opacity: 0.7
-      }} />
-
-      <div className="footer-container">
-        <div className="footer-grid">
+      <div className="footer-wrapper">
+        <div className="footer-top-content">
           
-          {/* Column 1: Brand Info */}
-          <div className="footer-col">
-            <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', width: 'fit-content' }}>
-              <motion.div 
-                whileHover={{ rotate: 90 }} 
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                style={{ 
-                  width: '40px', 
-                  height: '40px', 
-                  borderRadius: '12px', 
-                  background: 'linear-gradient(135deg, var(--accent) 0%, #047857 100%)', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  boxShadow: '0 0 20px var(--accent-glow)' 
-                }}
-              >
-                <Cpu color="var(--bg-primary)" size={22} />
-              </motion.div>
-              <span style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--text-primary)', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
-                BoltzPCB
-              </span>
-            </Link>
+          <div className="footer-brand-section">
+            <div className="footer-brand-name">
+               BoltzPCB
+            </div>
             <p className="footer-desc">
-              Next-generation interactive design platform for professional hardware engineering and electronics visualization.
+              Next-generation interactive design platform for professional hardware engineering and electronics visualization. Elevating PCB layout to an art form.
             </p>
-            <div className="social-row">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="GitHub">
-                <Github size={20} />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="Twitter">
-                <Twitter size={20} />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="LinkedIn">
-                <Linkedin size={20} />
-              </a>
-              <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="Discord">
-                <MessageCircle size={20} />
+          </div>
+
+          <div className="footer-links-container">
+            <div className="footer-link-group">
+              <span className="footer-link-title">Platform</span>
+              <Link to="/" className="footer-link">Home</Link>
+              <Link to="/features" className="footer-link">Features</Link>
+              <Link to="/hub" className="footer-link">Open Circuit Hub</Link>
+            </div>
+            {/* <div className="footer-link-group">
+              <span className="footer-link-title">Legal</span>
+              <Link to="#" className="footer-link">Privacy Policy</Link>
+              <Link to="#" className="footer-link">Terms of Service</Link>
+              <Link to="#" className="footer-link">Cookie Policy</Link>
+            </div> */}
+            <div className="footer-link-group">
+              <span className="footer-link-title">Connect</span>
+              {/* <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer-link" style={{ gap: '0.5rem' }}>
+                <Twitter size={16} /> Twitter
+              </a> */}
+              <a href="https://app.boltzmann.co" target="_blank" rel="noopener noreferrer" className="footer-link" style={{ gap: '0.5rem' }}>
+                Platform
               </a>
             </div>
           </div>
 
-          {/* Column 2: Navigation */}
-          <div className="footer-col">
-            <h3 className="footer-col-title">Navigation</h3>
-            <ul className="footer-links-list">
-              <li>
-                <Link to="/" className="footer-link">Home</Link>
-              </li>
-              <li>
-                <Link to="/features" className="footer-link">Features</Link>
-              </li>
-              <li>
-                <Link to="/hub" className="footer-link">Open Circuit Hub</Link>
-              </li>
-            </ul>
-          </div>
-
-
-          {/* Column 4: Newsletter */}
-          <div className="footer-col">
-            <h3 className="footer-col-title">Stay Connected</h3>
-            <p className="newsletter-desc">
-              Subscribe to get the latest updates on releases and feature rollouts.
+          <div className="footer-contact-block" style={{ flex: 1, minWidth: '300px', maxWidth: '350px' }}>
+            <span className="footer-link-title" style={{ display: 'block', marginBottom: '1.5rem' }}>Contact</span>
+            
+            <a href="mailto:contact@boltzmann.co" style={{ display: 'block', fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', textDecoration: 'none', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>
+              contact@boltzmann.co
+            </a>
+            
+            <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+              B Block, Asian Sun City, 309,<br />
+              Forest Dept Colony, Kondapur,<br />
+              Hyderabad, Telangana 500084
             </p>
-            <form onSubmit={handleSubscribe} className="newsletter-form">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                required
-                className="newsletter-input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <button type="submit" className="newsletter-btn" aria-label="Subscribe">
-                <ArrowRight size={20} />
-              </button>
-            </form>
-            <AnimatePresence>
-              {subscribed && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="newsletter-success"
-                >
-                  <Check size={16} /> Subscribed successfully!
-                </motion.div>
-              )}
-            </AnimatePresence>
+
+            <a href="tel:+919498866488" style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '1.1rem', textDecoration: 'none' }}>
+              +91 9498866488
+            </a>
           </div>
 
         </div>
 
-        {/* Bottom footer bar */}
-        <div className="footer-bottom">
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0, fontWeight: 500, letterSpacing: '0.02em' }}>
-            &copy; {new Date().getFullYear()} BoltzPCB. All rights reserved.
+        <div className="footer-bottom-bar">
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0, fontWeight: 500 }}>
+            &copy; {new Date().getFullYear()} BoltzPCB Platform. All rights reserved.
           </p>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            <motion.button 
-              onClick={scrollToTop} 
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="back-to-top-btn" 
-              aria-label="Back to top"
-            >
-              <ChevronUp size={20} />
-            </motion.button>
-          </div>
+          <button onClick={scrollToTop} className="back-to-top">
+            BACK TO TOP
+            <div className="back-to-top-icon">
+              <ChevronUp size={18} />
+            </div>
+          </button>
         </div>
       </div>
     </footer>

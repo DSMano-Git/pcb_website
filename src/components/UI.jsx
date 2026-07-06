@@ -24,7 +24,7 @@ export const TextReveal = memo(({ children, delay = 0 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   return (
-    <div ref={ref} style={{ overflow: 'hidden', display: 'inline-block' }}>
+    <div ref={ref} style={{ overflow: 'hidden', display: 'inline-block', paddingBottom: '0.15em', marginBottom: '-0.15em' }}>
       <motion.div initial={{ y: "100%" }} animate={isInView ? { y: 0 } : { y: "100%" }}
         transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1], delay }}>
         {children}
