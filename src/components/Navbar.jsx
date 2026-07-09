@@ -80,18 +80,17 @@ const Navbar = () => {
   return (
     <div style={{ 
       position: 'sticky', 
-      top: scrolled ? '0' : '1.5rem', 
+      top: 0, 
       zIndex: 1000, 
       display: 'flex', 
       justifyContent: 'center',
       width: '100%',
       pointerEvents: 'none', // Allows clicking through the empty space of the container
-      transition: 'top 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
     }}>
       <motion.nav 
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+        animate={{ y: scrolled ? 0 : 24 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         style={{
           pointerEvents: 'auto',
           display: 'flex',
@@ -101,14 +100,14 @@ const Navbar = () => {
           padding: '0.5rem 0.5rem 0.5rem 1.25rem',
           borderRadius: scrolled ? '0 0 24px 24px' : '999px',
           backgroundColor: scrolled ? 'var(--navbar-bg-scrolled)' : 'var(--card-bg)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
+          backdropFilter: 'blur(40px)',
+          WebkitBackdropFilter: 'blur(40px)',
           border: '1px solid var(--border-color)',
-          borderTop: scrolled ? 'none' : '1px solid var(--border-color)',
-          boxShadow: scrolled ? '0 10px 40px rgba(0,0,0,0.1)' : '0 20px 40px rgba(0,0,0,0.05), 0 0 0 1px var(--glass-border) inset',
+          borderTopColor: scrolled ? 'transparent' : 'var(--border-color)',
+          boxShadow: scrolled ? '0 10px 40px rgba(0,0,0,0.3), inset 0 1px 0 var(--border-highlight)' : '0 20px 40px rgba(0,0,0,0.15), inset 0 1px 0 var(--border-highlight), inset 1px 0 0 rgba(255, 255, 255, 0.05)',
           width: 'auto',
           maxWidth: '95vw',
-          transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: 'background-color 0.4s ease, box-shadow 0.4s ease, border-radius 0.4s ease, border-top-color 0.4s ease',
         }}
       >
         {/* LEFT: Logo */}

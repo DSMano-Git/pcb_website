@@ -48,6 +48,7 @@ const Footer = memo(() => {
       background: 'var(--bg-secondary)',
       color: 'var(--text-primary)',
       borderTop: '1px solid var(--border-color)',
+      boxShadow: 'inset 0 1px 0 var(--border-highlight)',
       overflow: 'hidden',
       zIndex: 10,
     }}>
@@ -112,9 +113,9 @@ const Footer = memo(() => {
         .social-circle:hover {
           background: var(--accent);
           color: #fff;
-          border-color: var(--accent);
+          border-color: var(--accent-light);
           transform: translateY(-4px) scale(1.05);
-          box-shadow: 0 10px 20px var(--accent-glow);
+          box-shadow: 0 10px 30px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
         .footer-links-container {
           display: flex;
@@ -145,8 +146,9 @@ const Footer = memo(() => {
           font-weight: 500;
         }
         .footer-link:hover {
-          color: var(--accent);
+          color: var(--accent-light);
           transform: translateX(4px);
+          text-shadow: 0 0 20px var(--accent-glow);
         }
         .footer-newsletter {
           background: rgba(128, 128, 128, 0.03);

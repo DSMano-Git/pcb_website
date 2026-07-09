@@ -9,18 +9,21 @@
   
   --accent: #0ea5e9;
   --accent-light: #06b6d4;
+  --accent-purple: #7c3aed;
   --accent-glow: rgba(14, 165, 233, 0.15);
   
   --gradient-primary: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #3b82f6 100%);
   --gradient-hover: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 50%, #06b6d4 100%);
+  --gradient-intense: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #0ea5e9 100%);
   --gradient-glow: rgba(14, 165, 233, 0.2);
   
   --grid-line: rgba(14, 165, 233, 0.08);
   --border-color: rgba(14, 165, 233, 0.2);
+  --border-highlight: rgba(255, 255, 255, 0.8);
   --glass-border: rgba(255, 255, 255, 0.9);
   
-  --card-bg: #ffffff;
-  --card-hover-bg: #f0f7fb;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-hover-bg: rgba(240, 247, 251, 0.85);
 
   --navbar-bg: rgba(255, 255, 255, 0.75);
   --navbar-bg-scrolled: rgba(255, 255, 255, 0.95);
@@ -37,37 +40,40 @@
 }
 
 :root[data-theme="dark"] {
-  /* Deep Space Blue & Cyan Dark Mode */
+  /* Deep Space Blue & Cyan Dark Mode - ADVANCED */
   --bg-primary: #020617; 
-  --bg-secondary: #0f172a;
-  --bg-tertiary: #1e293b;
-  --text-primary: #f8fafc;
+  --bg-secondary: #0a0f25; /* Deeper for better contrast */
+  --bg-tertiary: #111827;
+  --text-primary: #ffffff; /* Brighter for crispness */
   --text-secondary: #cbd5e1;
   --text-muted: #64748b;
 
   --accent: #0ea5e9;
   --accent-light: #22d3ee;
-  --accent-glow: rgba(14, 165, 233, 0.25);
+  --accent-purple: #8b5cf6; /* Added purple for multi-stop gradients */
+  --accent-glow: rgba(14, 165, 233, 0.35);
 
   --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 50%, #22d3ee 100%);
   --gradient-hover: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 50%, #3b82f6 100%);
-  --gradient-glow: rgba(14, 165, 233, 0.3);
+  --gradient-intense: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #22d3ee 100%);
+  --gradient-glow: rgba(14, 165, 233, 0.4);
 
-  --grid-line: rgba(14, 165, 233, 0.05);
-  --border-color: rgba(14, 165, 233, 0.2);
+  --grid-line: rgba(14, 165, 233, 0.06);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-highlight: rgba(255, 255, 255, 0.25);
   --glass-border: rgba(255, 255, 255, 0.05);
 
-  --card-bg: #0b1120;
-  --card-hover-bg: #131c31;
+  --card-bg: rgba(11, 17, 32, 0.6);
+  --card-hover-bg: rgba(19, 28, 49, 0.75);
 
   --navbar-bg: rgba(2, 6, 23, 0.65);
-  --navbar-bg-scrolled: rgba(5, 10, 30, 0.92);
-  --navbar-border: rgba(14, 165, 233, 0.25);
+  --navbar-bg-scrolled: rgba(2, 6, 23, 0.92);
+  --navbar-border: rgba(255, 255, 255, 0.1);
   --navbar-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
   --navbar-shadow-scrolled: 0 10px 40px rgba(0, 0, 0, 0.9);
   --nav-pill-bg: rgba(14, 165, 233, 0.12);
-  --btn-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
-  --hero-shadow: 0 10px 40px rgba(14, 165, 233, 0.15);
+  --btn-shadow: 0 8px 30px rgba(14, 165, 233, 0.4);
+  --hero-shadow: 0 10px 50px rgba(14, 165, 233, 0.25);
 }
 
 * {
@@ -247,6 +253,15 @@ a:hover {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  text-shadow: 0 0 40px var(--accent-glow);
+}
+
+.text-gradient-intense {
+  background: var(--gradient-intense);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 60px var(--accent-glow);
 }
 
 .bg-bubble {
@@ -449,18 +464,21 @@ section {
   opacity: 1;
 }
 
-/* True Glassmorphism Feature Card */
+/* True Glassmorphism Feature Card - ADVANCED */
 .feature-card {
   background: var(--card-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
   border: 1px solid var(--border-color);
   border-radius: 28px;
   padding: 3rem;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.2), 
+    inset 0 1px 0 var(--border-highlight), 
+    inset 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 .feature-card::before {
@@ -469,25 +487,28 @@ section {
   inset: 0;
   border-radius: 28px;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(135deg, var(--border-highlight), rgba(255, 255, 255, 0.05));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
 }
 
 .feature-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
   background: var(--card-hover-bg);
-  border-color: var(--accent-glow);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), 0 0 20px var(--accent-glow);
+  border-color: var(--accent-light);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3), 
+    0 0 40px var(--accent-glow),
+    inset 0 1px 0 var(--border-highlight);
 }
 
 .feature-card:hover::before {
-  background: linear-gradient(135deg, var(--accent) 0%, transparent 50%, var(--accent-light) 100%);
-  opacity: 0.6;
+  background: var(--gradient-intense);
+  opacity: 1;
 }
 
 .feature-icon {
@@ -502,27 +523,32 @@ section {
   color: var(--accent);
 }
 
-/* Glass Card Component */
+/* Glass Card Component - ADVANCED */
 .glass-card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 24px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.02);
   background: var(--card-hover-bg);
-  border-color: var(--accent-glow);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), 0 0 20px var(--accent-glow);
+  border-color: var(--accent-light);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.25), 
+    0 0 30px var(--accent-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {
   .glass-card:hover {
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), 0 0 20px var(--accent-glow);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 }
 

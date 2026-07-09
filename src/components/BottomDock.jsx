@@ -37,7 +37,7 @@ const BottomDock = () => {
       }}
     >
       {/* Brand Icon */}
-      <Link to="/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '45px', height: '45px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', color: 'var(--accent)', textDecoration: 'none' }}>
+      <Link to="/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '45px', height: '45px', borderRadius: '50%', background: 'var(--nav-pill-bg)', color: 'var(--accent)', textDecoration: 'none' }}>
         <motion.div whileHover={{ rotate: 90 }} transition={{ duration: 0.3 }}>
           <Cpu size={24} />
         </motion.div>
@@ -77,7 +77,7 @@ const BottomDock = () => {
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'rgba(255,255,255,0.1)',
+                  background: 'var(--border-color)',
                   borderRadius: '50%',
                   zIndex: -1
                 }}

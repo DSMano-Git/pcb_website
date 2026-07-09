@@ -85,7 +85,7 @@ const LandingPage = () => {
 
               <h1 style={{ fontSize: 'clamp(3rem, 5vw, 5.5rem)', marginBottom: '1.5rem', lineHeight: 1.05, textShadow: '0 0 40px var(--accent-glow)', textAlign: 'left' }}>
                 <TextReveal>Design hardware,</TextReveal><br />
-                <TextReveal delay={0.15}>powered by <span className="text-gradient">AI</span></TextReveal>
+                <TextReveal delay={0.15}>powered by <span className="text-gradient-intense">AI</span></TextReveal>
               </h1>
               
               <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
@@ -131,11 +131,11 @@ const LandingPage = () => {
       {/* ═══════════════════════════════════════════
           TAGLINE
           ═══════════════════════════════════════════ */}
-      <section style={{ padding: '5rem 0', borderTop: '1px solid rgba(255,255,255,0.03)' }}>
+      <section style={{ padding: '5rem 0', borderTop: '1px solid var(--border-color)' }}>
         <div className="container">
           <ScrollReveal>
             <p style={{ fontSize: 'clamp(1.25rem, 3vw, 1.75rem)', fontWeight: '500', color: 'var(--text-primary)', textAlign: 'center', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6' }}>
-              We handle the complete PCB journey — from architecture planning to verified manufacturing — <span className="text-gradient">so you can ship hardware, fast.</span>
+              We handle the complete PCB journey — from architecture planning to verified manufacturing — <span className="text-gradient-intense">so you can ship hardware, fast.</span>
             </p>
           </ScrollReveal>
         </div>
@@ -147,7 +147,7 @@ const LandingPage = () => {
       <section style={{ padding: '8rem 0', background: 'transparent', position: 'relative', zIndex: 10 }}>
         <div className="container">
           <ScrollReveal style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <span className="mono" style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '999px', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-color)', marginBottom: '1.5rem', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Capabilities</span>
+            <span className="mono" style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '999px', background: 'var(--nav-pill-bg)', border: '1px solid var(--border-color)', marginBottom: '1.5rem', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Capabilities</span>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)' }}><TextReveal>Everything you need to ship hardware.</TextReveal></h2>
           </ScrollReveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
@@ -236,7 +236,7 @@ const LandingPage = () => {
       <section style={{ padding: '8rem 0' }}>
         <div className="container">
           <ScrollReveal style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <span className="mono" style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '999px', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-color)', marginBottom: '1.5rem', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>03 — Simulate</span>
+            <span className="mono" style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '999px', background: 'var(--nav-pill-bg)', border: '1px solid var(--border-color)', marginBottom: '1.5rem', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>03 — Simulate</span>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)' }}><TextReveal>Lightning-fast GPU Simulators</TextReveal></h2>
           </ScrollReveal>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
@@ -281,7 +281,7 @@ const LandingPage = () => {
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
             <ScrollReveal>
-              <span className="mono" style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '999px', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-color)', marginBottom: '1.5rem', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>04 — Manufacture</span>
+              <span className="mono" style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '999px', background: 'var(--nav-pill-bg)', border: '1px solid var(--border-color)', marginBottom: '1.5rem', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>04 — Manufacture</span>
               <h2 style={{ marginBottom: '1.5rem', fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', lineHeight: 1.2 }}>Compare. Choose. Manufacture.</h2>
               <p style={{ marginBottom: '2rem', fontSize: '1.05rem', color: 'var(--text-muted)' }}>
                 Your design is simulated, validated, and DRC-clean. Get instant AI cost estimation, connect with verified vendors, and export Gerbers with a single click.

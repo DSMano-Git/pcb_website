@@ -30,7 +30,7 @@ const OpenCircuitHub = () => {
           </h1>
           
           <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }} style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', color: 'var(--text-primary)', fontWeight: 400, marginBottom: '2.5rem' }}>
-            Where <span className="text-gradient">PCB designers</span> build in public.
+            Where <span className="text-gradient-intense">PCB designers</span> build in public.
           </motion.h2>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }} style={{ fontSize: '1.25rem', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '3.5rem', maxWidth: '800px', margin: '0 auto 3.5rem' }}>
@@ -58,7 +58,7 @@ const OpenCircuitHub = () => {
               <div style={{ position: 'absolute', top: '-50%', left: '20%', width: '60%', height: '200%', background: 'radial-gradient(ellipse, var(--accent-glow) 0%, transparent 60%)', transform: 'rotate(-45deg)', pointerEvents: 'none' }} />
               
               <h3 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', marginBottom: '2rem', fontWeight: 800, lineHeight: 1.1, position: 'relative', zIndex: 1 }}>
-                Real boards. Real files. <br/><span className="text-gradient">Zero paywalls.</span>
+                Real boards. Real files. <br/><span className="text-gradient-intense">Zero paywalls.</span>
               </h3>
               <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', lineHeight: 1.8, maxWidth: '850px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
                 Good PCB references are scattered everywhere—half-documented GitHub repos, forum threads, someone's laptop. Open Circuit Hub is one dedicated place for it: a library of real, working PCB designs, shared by the people who actually built them, for anyone who wants to learn from them, reuse them, or take them somewhere new.
