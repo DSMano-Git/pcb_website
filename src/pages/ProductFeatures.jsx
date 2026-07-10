@@ -73,7 +73,7 @@ const StableTabs = ({ tabs }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: '350px' }}>
-      <div style={{ display: 'flex', gap: '1rem', borderBottom: '1px solid var(--border-color)', marginBottom: '1.5rem', paddingBottom: '0.5rem' }}>
+      <div style={{ display: 'flex', gap: '1rem', borderBottom: '1px solid var(--border-color)', marginBottom: '1.5rem', paddingBottom: '0.5rem', overflowX: 'auto', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }} className="hide-scrollbar">
         {tabs.map((tab, idx) => (
           <button
             key={idx}
@@ -87,7 +87,8 @@ const StableTabs = ({ tabs }) => {
               cursor: 'pointer',
               padding: '0.5rem 0',
               position: 'relative',
-              transition: 'color 0.2s'
+              transition: 'color 0.2s',
+              whiteSpace: 'nowrap'
             }}
           >
             {tab.title}
@@ -383,6 +384,19 @@ const ProductFeatures = () => {
       }
     `;
     document.head.appendChild(style);
+    
+    if (window.location.hash) {
+      setTimeout(() => {
+        const id = window.location.hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          const yOffset = -80; // for navbar
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+    
     return () => document.head.removeChild(style);
   }, []);
 
@@ -432,7 +446,7 @@ const ProductFeatures = () => {
           ═══════════════════════════════════════════ */}
       <section style={{ padding: '6rem 0', background: 'var(--bg-primary)' }}>
         <div className="container" style={{ maxWidth: '1200px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '6rem', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '6rem', alignItems: 'center' }}>
             <ScrollReveal>
               <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: '2rem' }}>
                 From Spark of Idea to <span className="text-gradient-intense">Smart PCB</span>
@@ -484,7 +498,7 @@ const ProductFeatures = () => {
           ═══════════════════════════════════════════ */}
       <section style={{ padding: '8rem 0', background: 'var(--bg-primary)' }}>
         <div className="container" style={{ maxWidth: '1200px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '6rem', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 450px), 1fr))', gap: '6rem', alignItems: 'center' }}>
 
             <div>
               <div className="mono" style={{ color: 'var(--accent)', marginBottom: '1rem', letterSpacing: '0.1em' }}>FEATURE DEEP DIVE</div>
@@ -520,9 +534,9 @@ const ProductFeatures = () => {
       {/* ═══════════════════════════════════════════
           TOOL DEEP DIVE: SI SIMULATOR
           ═══════════════════════════════════════════ */}
-      <section style={{ padding: '8rem 0', background: 'var(--bg-secondary)' }}>
+      <section id="si-simulator" style={{ padding: '8rem 0', background: 'var(--bg-secondary)' }}>
         <div className="container" style={{ maxWidth: '1200px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '6rem', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 450px), 1fr))', gap: '6rem', alignItems: 'center' }}>
 
             <ScrollReveal delay={0.1}>
               <PowerXRayReveal src="/color_pcb_macro.png" xraySrc="/xray_pcb_macro.png" height="500px" />
@@ -565,9 +579,9 @@ const ProductFeatures = () => {
       {/* ═══════════════════════════════════════════
           TOOL DEEP DIVE: THERMAL
           ═══════════════════════════════════════════ */}
-      <section style={{ padding: '8rem 0', background: 'var(--bg-primary)' }}>
+      <section id="thermal-simulator" style={{ padding: '8rem 0', background: 'var(--bg-primary)' }}>
         <div className="container" style={{ maxWidth: '1200px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '6rem', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 450px), 1fr))', gap: '6rem', alignItems: 'center' }}>
 
             <div>
               <div className="mono" style={{ color: 'var(--accent)', marginBottom: '1rem', letterSpacing: '0.1em' }}>FEATURE DEEP DIVE</div>
@@ -611,7 +625,7 @@ const ProductFeatures = () => {
           ═══════════════════════════════════════════ */}
       <section style={{ padding: '8rem 0', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-color)' }}>
         <div className="container" style={{ maxWidth: '1200px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '4rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '4rem' }}>
 
             <ScrollReveal>
               <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '2rem' }}>Superpowers of Our System</h2>

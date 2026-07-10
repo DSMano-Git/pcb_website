@@ -76,7 +76,7 @@ const OpenCircuitHub = () => {
             <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 800, marginBottom: '1rem', letterSpacing: '-0.02em' }}>Why the Hub exists</h2>
           </ScrollReveal>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '2rem' }}>
             
             {/* Card 1 */}
             <ScrollReveal delay={0.1}>
@@ -158,7 +158,7 @@ const OpenCircuitHub = () => {
             </div>
           </ScrollReveal>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2.5rem', position: 'relative' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '2.5rem', position: 'relative' }}>
             
             {/* Desktop Connecting Line */}
             <div style={{ position: 'absolute', top: '50px', left: '12%', right: '12%', height: '2px', background: 'linear-gradient(90deg, transparent, var(--accent), transparent)', opacity: 0.3, zIndex: 0 }} className="d-none d-lg-block" />

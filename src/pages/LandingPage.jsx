@@ -76,7 +76,7 @@ const LandingPage = () => {
         <HeroBackground3D />
         
         <motion.div className="container" style={{ position: 'relative', zIndex: 10, y: heroY, opacity: heroOpacity }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'center' }}>
+          <div className="hero-flex-mobile" style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'center' }}>
             
             {/* Left Content */}
             <div style={{ flex: '1 1 400px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
@@ -179,7 +179,7 @@ const LandingPage = () => {
         <div className="bg-bubble bubble-purple" style={{ width: '700px', height: '700px', bottom: '10%', left: '-15%', opacity: 0.7 }} />
         
         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+          <div className="grid-1fr-1fr" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
             <ScrollReveal>
               <span className="mono" style={{ display: 'block', marginBottom: '0.5rem' }}>01 — Design</span>
               <h2 style={{ marginBottom: '1rem', fontSize: '1.75rem' }}>AI-Powered PCB Design System</h2>
@@ -196,7 +196,7 @@ const LandingPage = () => {
               {/* <Link to="/features" className="btn btn-primary" style={{ fontSize: '0.85rem' }}>Explore the System <AnimatedSvgIcon d={ICONS.chevron} size={14} floatRange={0} /></Link> */}
             </ScrollReveal>
             <ScrollReveal delay={0.2} y={50}>
-              <PowerXRayReveal src="/pcb-hero-ultra-boltz.png" xraySrc="/pcb-hero-ultra-boltz-xray.png" height="420px" />
+              <PowerXRayReveal src="/pcb-hero-ultra-boltz.png" xraySrc="/pcb-hero-ultra-boltz-xray.png" height="min(100vw, 420px)" />
             </ScrollReveal>
           </div>
         </div>
@@ -207,9 +207,9 @@ const LandingPage = () => {
           ═══════════════════════════════════════════ */}
       <section style={{ padding: '8rem 0', background: 'transparent', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+          <div className="grid-1fr-1fr" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
             <ScrollReveal delay={0.2} y={50}>
-              <PowerXRayReveal src="/boltzpcb_apex.png" xraySrc="/boltzpcb_apex_xray.png" height="420px" />
+              <PowerXRayReveal src="/boltzpcb_apex.png" xraySrc="/boltzpcb_apex_xray.png" height="min(100vw, 420px)" />
             </ScrollReveal>
             <ScrollReveal>
               <span className="mono" style={{ display: 'block', marginBottom: '0.5rem' }}>02 — Placement</span>
@@ -239,36 +239,30 @@ const LandingPage = () => {
             <span className="mono" style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '999px', background: 'var(--nav-pill-bg)', border: '1px solid var(--border-color)', marginBottom: '1.5rem', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>03 — Simulate</span>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)' }}><TextReveal>Lightning-fast GPU Simulators</TextReveal></h2>
           </ScrollReveal>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
+          <div className="grid-1fr-1fr" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
             <ScrollReveal>
-              <div className="glass-card" style={{ padding: '1rem' }}>
-                <PowerXRayReveal src="/pcb-hero-ultra-boltz.png" xraySrc="/pcb-hero-ultra-boltz-xray.png" height="320px" />
+              <Link to="/features#si-simulator" className="glass-card" style={{ padding: '1rem', display: 'block', textDecoration: 'none', color: 'inherit' }}>
+                <PowerXRayReveal src="/color_pcb_macro.png" xraySrc="/xray_pcb_macro.png" height="min(100vw, 320px)" />
                 <div style={{ padding: '2rem 1.5rem 1rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
                     <AnimatedSvgIcon d={ICONS.zap} size={24} floatRange={0} delay={0.2} />
                     <h3 style={{ fontSize: '1.35rem', margin: 0 }}>AI Smart SI Simulator</h3>
                   </div>
                   <p style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>GPU-accelerated signal integrity with AI-powered parameter suggestions and live eye diagrams.</p>
-                  {/* <Link to="/features" style={{ color: 'var(--accent)', fontWeight: '600', fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: 'rgba(0, 240, 255, 0.1)', borderRadius: '999px', transition: 'all 0.2s' }} className="hover-glow">
-                    Speed Up Analysis <AnimatedSvgIcon d={ICONS.chevron} size={14} floatRange={0} />
-                  </Link> */}
                 </div>
-              </div>
+              </Link>
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
-              <div className="glass-card" style={{ padding: '1rem' }}>
-                <PowerXRayReveal src="/thermal.png" xraySrc="/thermal_xray.png" height="320px" />
+              <Link to="/features#thermal-simulator" className="glass-card" style={{ padding: '1rem', display: 'block', textDecoration: 'none', color: 'inherit' }}>
+                <PowerXRayReveal src="/thermal.png" xraySrc="/thermal_xray.png" height="min(100vw, 320px)" />
                 <div style={{ padding: '2rem 1.5rem 1rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
                     <AnimatedSvgIcon d={ICONS.hexagon} size={24} floatRange={0} delay={0.4} />
                     <h3 style={{ fontSize: '1.35rem', margin: 0 }}>Smart Thermal Simulator</h3>
                   </div>
                   <p style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Real-time thermal maps, automatic hotspot detection, and AI-driven heatsink recommendations.</p>
-                  {/* <Link to="/features" style={{ color: 'var(--accent)', fontWeight: '600', fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: 'rgba(0, 240, 255, 0.1)', borderRadius: '999px', transition: 'all 0.2s' }} className="hover-glow">
-                    Master Board Heat <AnimatedSvgIcon d={ICONS.chevron} size={14} floatRange={0} />
-                  </Link> */}
                 </div>
-              </div>
+              </Link>
             </ScrollReveal>
           </div>
         </div>
@@ -279,7 +273,7 @@ const LandingPage = () => {
           ═══════════════════════════════════════════ */}
       <section style={{ padding: '8rem 0', background: 'transparent', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+          <div className="grid-1fr-1fr" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
             <ScrollReveal>
               <span className="mono" style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '999px', background: 'var(--nav-pill-bg)', border: '1px solid var(--border-color)', marginBottom: '1.5rem', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>04 — Manufacture</span>
               <h2 style={{ marginBottom: '1.5rem', fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', lineHeight: 1.2 }}>Compare. Choose. Manufacture.</h2>

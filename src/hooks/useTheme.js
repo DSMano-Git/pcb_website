@@ -7,25 +7,42 @@ export const useTheme = () => {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
+    let initialTheme = 'light';
     if (savedTheme) {
+      initialTheme = savedTheme;
       setTheme(savedTheme);
       document.documentElement.setAttribute('data-theme', savedTheme);
     } else if (prefersDark) {
+      initialTheme = 'dark';
       setTheme('dark');
       document.documentElement.setAttribute('data-theme', 'dark');
     } else {
       document.documentElement.removeAttribute('data-theme');
+    }
+
+    const favicon = document.getElementById('favicon');
+    if (favicon) {
+      favicon.href = initialTheme === 'light' ? '/lightmodefavicon.ico' : '/darkmodefavicon.ico';
     }
   }, []);
 
   const toggleTheme = (e) => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     
+    const applyTheme = (t) => {
+      setTheme(t);
+      localStorage.setItem('theme', t);
+      document.documentElement.setAttribute('data-theme', t);
+      if (t === 'light') document.documentElement.removeAttribute('data-theme');
+      
+      const favicon = document.getElementById('favicon');
+      if (favicon) {
+        favicon.href = t === 'light' ? '/lightmodefavicon.ico' : '/darkmodefavicon.ico';
+      }
+    };
+
     if (!document.startViewTransition) {
-      setTheme(newTheme);
-      localStorage.setItem('theme', newTheme);
-      document.documentElement.setAttribute('data-theme', newTheme);
-      if (newTheme === 'light') document.documentElement.removeAttribute('data-theme');
+      applyTheme(newTheme);
       return;
     }
 
@@ -38,10 +55,7 @@ export const useTheme = () => {
     );
 
     const transition = document.startViewTransition(() => {
-      setTheme(newTheme);
-      localStorage.setItem('theme', newTheme);
-      document.documentElement.setAttribute('data-theme', newTheme);
-      if (newTheme === 'light') document.documentElement.removeAttribute('data-theme');
+      applyTheme(newTheme);
     });
 
     transition.ready.then(() => {

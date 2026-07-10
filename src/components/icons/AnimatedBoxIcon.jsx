@@ -17,7 +17,6 @@ const AnimatedBoxIcon = forwardRef(
         const isControlledRef = useRef(false);
 
         useImperativeHandle(ref, () => {
-            isControlledRef.current = true;
             return {
                 startAnimation: () => controls.start('animate'),
                 stopAnimation: () => controls.start('normal'),
@@ -25,27 +24,23 @@ const AnimatedBoxIcon = forwardRef(
         });
 
         useEffect(() => {
-            if (!isControlledRef.current) {
-                if (isActive) {
-                    controls.start('animate');
-                } else {
-                    controls.start('normal');
-                }
+            if (isActive) {
+                controls.start('animate');
+            } else {
+                controls.start('normal');
             }
         }, [isActive, controls]);
 
         const handleMouseEnter = useCallback(
             (e) => {
-                if (isControlledRef.current) { onMouseEnter?.(e); }
-                else { controls.start('animate'); }
-            }, [controls, onMouseEnter]
+                onMouseEnter?.(e);
+            }, [onMouseEnter]
         );
 
         const handleMouseLeave = useCallback(
             (e) => {
-                if (isControlledRef.current) { onMouseLeave?.(e); }
-                else { controls.start('normal'); }
-            }, [controls, onMouseLeave]
+                onMouseLeave?.(e);
+            }, [onMouseLeave]
         );
 
         return (

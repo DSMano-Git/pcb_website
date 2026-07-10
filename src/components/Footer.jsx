@@ -2,6 +2,7 @@ import React, { memo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, ArrowRight, ChevronUp, Check, Cpu, Globe } from 'lucide-react';
+import { useTheme } from '../hooks/useTheme';
 
 const Github = ({ size = 24, ...props }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -25,6 +26,7 @@ const Linkedin = ({ size = 24, ...props }) => (
 );
 
 const Footer = memo(() => {
+  const { theme } = useTheme();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -243,8 +245,14 @@ const Footer = memo(() => {
           justify-content: center;
         }
         @media (max-width: 1024px) {
-          .footer-top-content { flex-direction: column; }
+          .footer-top-content { flex-direction: column; gap: 3rem; }
           .footer-brand-section, .footer-newsletter { max-width: 100%; }
+        }
+        @media (max-width: 768px) {
+          .footer-wrapper { padding: 4rem 1.5rem 2rem; }
+          .footer-links-container { flex-direction: column; gap: 2.5rem; }
+          .footer-bottom-bar { flex-direction: column; align-items: flex-start; gap: 1rem; }
+          .footer-brand-name { font-size: 2.2rem; }
         }
       `}</style>
 
@@ -256,7 +264,7 @@ const Footer = memo(() => {
           
           <div className="footer-brand-section">
             <div className="footer-brand-name">
-               BoltzPCB
+              <img src={theme === 'light' ? '/lightmodelogo.png' : '/darkmodelogo.png'} alt="BoltzPCB" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
             </div>
             <p className="footer-desc">
               Next-generation interactive design platform for professional hardware engineering and electronics visualization. Elevating PCB layout to an art form.

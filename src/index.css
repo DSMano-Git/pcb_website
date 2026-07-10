@@ -561,27 +561,84 @@ section {
 }
 
 
-/* Responsive */
+/* ═══════════════════════════════════════════
+   RESPONSIVE & UTILITIES
+   ═══════════════════════════════════════════ */
+
+/* Display Utilities */
+@media (min-width: 768px) {
+  .d-md-flex {
+    display: flex !important;
+  }
+  .d-md-none {
+    display: none !important;
+  }
+}
+@media (max-width: 767px) {
+  .d-none.d-md-flex {
+    display: none !important;
+  }
+  .d-md-none {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .d-lg-block {
+    display: block !important;
+  }
+}
+@media (max-width: 991px) {
+  .d-none.d-lg-block {
+    display: none !important;
+  }
+}
+
+/* Global Responsive Adjustments */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
+  h1 { font-size: clamp(2.2rem, 8vw, 3rem); letter-spacing: -0.02em; }
+  h2 { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+  h3 { font-size: clamp(1.2rem, 5vw, 1.5rem); }
+  p { font-size: 1rem; }
+  
+  section { padding: 4rem 0; }
+  .container { padding: 0 1.25rem; }
+
+  /* Stack flex containers globally if they have large gaps and wrap */
+  .hero-flex-mobile {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 2rem !important;
+  }
+  
+  .hero-flex-mobile h1, .hero-flex-mobile p {
+    text-align: center !important;
+  }
+  
+  /* Grid layouts */
+  .grid-1fr-1fr {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+  
+  /* Adjust feature cards on mobile */
+  .feature-card {
+    padding: 2rem 1.5rem;
   }
 
-  h2 {
-    font-size: 2rem;
+  /* Make giant text smaller */
+  .text-massive {
+    font-size: clamp(3rem, 12vw, 5rem);
   }
+  .text-huge {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+}
 
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  section {
-    padding: 5rem 0;
-  }
-
-  .container {
-    padding: 0 1.5rem;
-  }
+@media (max-width: 480px) {
+  .container { padding: 0 1rem; }
+  section { padding: 3rem 0; }
+  .btn { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
 }
 /* Animated Gradient Border */
 .animated-gradient-border {
