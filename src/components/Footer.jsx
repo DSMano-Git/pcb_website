@@ -264,7 +264,7 @@ const Footer = memo(() => {
           
           <div className="footer-brand-section">
             <div className="footer-brand-name">
-              <img src={theme === 'light' ? '/lightmodelogo.png' : '/darkmodelogo.png'} alt="BoltzPCB" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
+              <img src={theme === 'light' ? '/lightmodelogo.png' : '/darkmodelogo.png'} alt="BoltzPCB" style={{ height: '72px', width: 'auto', objectFit: 'contain' }} />
             </div>
             <p className="footer-desc">
               Next-generation interactive design platform for professional hardware engineering and electronics visualization. Elevating PCB layout to an art form.

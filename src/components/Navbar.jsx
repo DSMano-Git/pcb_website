@@ -119,7 +119,7 @@ const Navbar = () => {
           {/* LEFT: Logo */}
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
             <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
-              <img src={theme === 'light' ? '/lightmodelogo.png' : '/darkmodelogo.png'} alt="BoltzPCB" style={{ height: '36px', width: 'auto', objectFit: 'contain' }} />
+              <img src={theme === 'light' ? '/lightmodelogo.png' : '/darkmodelogo.png'} alt="BoltzPCB" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
             </Link>
           </div>
           
