@@ -289,7 +289,7 @@ const Footer = memo(() => {
               {/* <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer-link" style={{ gap: '0.5rem' }}>
                 <Twitter size={16} /> Twitter
               </a> */}
-              <a href="https://app.boltzmann.co" target="_blank" rel="noopener noreferrer" className="footer-link" style={{ gap: '0.5rem' }}>
+              <a href="https://app.boltzpcb.com/auth" target="_blank" rel="noopener noreferrer" className="footer-link" style={{ gap: '0.5rem' }}>
                 Platform
               </a>
             </div>
@@ -298,8 +298,8 @@ const Footer = memo(() => {
           <div className="footer-contact-block" style={{ flex: 1, minWidth: '300px', maxWidth: '350px' }}>
             <span className="footer-link-title" style={{ display: 'block', marginBottom: '1.5rem' }}>Contact</span>
             
-            <a href="mailto:contact@boltzmann.co" style={{ display: 'block', fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', textDecoration: 'none', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>
-              contact@boltzmann.co
+            <a href="mailto:contact@boltzpcb.com" style={{ display: 'block', fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', textDecoration: 'none', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>
+              contact@boltzpcb.com
             </a>
             
             <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>

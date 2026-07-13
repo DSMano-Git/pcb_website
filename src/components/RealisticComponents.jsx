@@ -22,7 +22,7 @@ export const CpuChip = ({ style }) => (
     transformStyle: 'preserve-3d',
     ...style
   }}>
-    <div style={{ fontWeight: 'bold', fontSize: '12px', color: 'rgba(255,255,255,0.6)' }}>BOLTZMANN</div>
+    <div style={{ fontWeight: 'bold', fontSize: '12px', color: 'rgba(255,255,255,0.6)' }}>BoltzPCB</div>
     <div>BGA-9904X</div>
     <div>AI-PROC 3.2GHz</div>
     <div style={{ marginTop: '10px', width: '30px', height: '30px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'linear-gradient(135deg, transparent, rgba(255,255,255,0.05))' }} />

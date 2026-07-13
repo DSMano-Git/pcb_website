@@ -173,7 +173,7 @@ const Navbar = () => {
               </div>
             </motion.button>
 
-            <a href="https://boltzpcb.com/auth" target="_blank" rel="noopener noreferrer" className="d-none d-md-flex" style={{ textDecoration: 'none' }}>
+            <a href="https://app.boltzpcb.com/auth" target="_blank" rel="noopener noreferrer" className="d-none d-md-flex" style={{ textDecoration: 'none' }}>
               <motion.div 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -249,7 +249,7 @@ const Navbar = () => {
             
             <div style={{ height: '1px', background: 'var(--border-color)', margin: '1rem 0' }} />
             
-            <a href="https://boltzpcb.com/auth" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', width: '100%' }}>
+            <a href="https://app.boltzpcb.com/auth" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', width: '100%' }}>
               <div 
                 style={{
                   background: 'var(--text-primary)',
