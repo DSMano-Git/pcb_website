@@ -22,7 +22,7 @@ export const useTheme = () => {
 
     const favicon = document.getElementById('favicon');
     if (favicon) {
-      favicon.href = initialTheme === 'light' ? '/lightmodefavicon.ico' : '/darkmodefavicon.ico';
+      favicon.href = '/favicon-optimized.png';
     }
   }, []);
 
@@ -37,7 +37,7 @@ export const useTheme = () => {
       
       const favicon = document.getElementById('favicon');
       if (favicon) {
-        favicon.href = t === 'light' ? '/lightmodefavicon.ico' : '/darkmodefavicon.ico';
+        favicon.href = '/favicon-optimized.png';
       }
     };
 
